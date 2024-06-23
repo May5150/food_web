@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ホーム</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>ホーム</h1>
+        </header>
+
+        <main class="main-content">
+            <h2>賞味期限が近づいている食品</h2>
+            <ul id="expiringFoodsList">
+                <!-- 食材リストがここに表示される -->
+            </ul>
+        </main>
+
+        <footer class="footer">
+            <a href="add_food.html" class="button">食品登録</a>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('http://localhost:5000/api/get_expiring_foods')
+                .then(response => response.json())
+                .then(data => {
+                    const expiringFoodsList = document.getElementById('expiringFoodsList');
+                    data.forEach(food => {
+                        const listItem = document.createElement('li');
+                        listItem.innerHTML = `
+                            <input type="checkbox" class="foodCheckbox" data-id="${food.id}">
+                            ${food.foodName} - 残り${food.daysUntilExpiry}日 (賞味期限: ${food.expiryDate})
+                        `;
+                        expiringFoodsList.appendChild(listItem);
+                    });
+
+                    document.querySelectorAll('.foodCheckbox').forEach(checkbox => {
+                        checkbox.addEventListener('change', function(event) {
+                            const foodId = event.target.getAttribute('data-id');
+                            if (event.target.checked) {
+                                fetch(`http://localhost:5000/api/delete_food/${foodId}`, {
+                                    method: 'DELETE',
+                                })
+                                .then(response => {
+                                    if (!response.ok) {
+                                        throw new Error('Network response was not ok');
+                                    }
+                                    return response.json();
+                                })
+                                .then(data => {
+                                    // チェックされた食材を画面から削除
+                                    event.target.parentElement.remove();
+                                    console.log(data.message);
+                                })
+                                .catch(error => {
+                                    console.error('Error occurred while deleting food:', error);
+                                    alert('食品削除中にエラーが発生しました。');
+                                });
+                            }
+                        });
+                    });
+                })
+                .catch(error => {
+                    console.error('Error occurred while fetching expiring foods:', error);
+                    alert('食品の取得中にエラーが発生しました。');
+                });
+        });
+    </script>
+</body>
+</html>
+
+
+

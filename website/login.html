@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ログイン</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>ログイン</h1>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="email">メールアドレス:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">パスワード:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="button">ログイン</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // サーバーに送信するデータの準備
+            const data = {
+                email: email,
+                password: password
+            };
+
+            // サーバーへのHTTPリクエストの実装（例としてfetchを使用）
+            fetch('http://localhost:5000/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // ログイン成功時の処理
+                if (data.message === 'ログインに成功しました。') {
+                    window.location.href = '/dashboard.html';  // ダッシュボードにリダイレクト
+                } else {
+                    alert(data.message);  // エラーメッセージを表示
+                }
+            })
+            .catch(error => {
+                // ログインエラー時の処理
+                console.error('ログインエラー:', error);
+                alert('ログイン中にエラーが発生しました。');
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+
+
