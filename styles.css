@@ -1,83 +1,66 @@
 body {
   font-family: 'Arial', sans-serif;
-  background-color: #f0f0f0; /* ページ全体の背景色 */
+  background-color: #e0ffce; /* ページ全体の背景色を薄い黄緑に */
   margin: 0;
   padding: 0;
 }
 
-.container {
+/* Dashboard-specific styles */
+.dashboard-container {
   max-width: 1200px;
   margin: 50px auto;
-  background-color: #ffffff; /* コンテンツの背景色 */
+  background-color: #f0ffe6; /* コンテンツの背景色を薄い黄緑に */
   padding: 30px;
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* 軽い影の効果 */
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.dashboard-header {
+  text-align: center;
   margin-bottom: 30px;
 }
 
-.header h1 {
+.dashboard-header h1 {
   font-size: 28px;
   color: #333333; /* ヘッダーのテキストの色 */
   margin: 0;
 }
 
-.profile {
-  display: flex;
-  align-items: center;
+.dashboard-main-content {
+  text-align: center;
 }
 
-.profile img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%; /* 丸いプロフィール画像 */
-  margin-right: 10px;
+.dashboard-main-content h2 {
+  font-size: 24px;
+  color: #333333; /* セクションタイトルの色 */
+  margin-bottom: 20px;
 }
 
-.profile p {
-  font-size: 16px;
-  color: #666666; /* プロフィールのテキストの色 */
-  margin: 0;
-}
-
-.main-content {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* レスポンシブなグリッドレイアウト */
-  gap: 20px;
-}
-
-.card {
-  background-color: #ffffff; /* カードの背景色 */
+.dashboard-food-list {
+  background-color: #d4f5a1; /* 食品リスト部分の背景色を薄い黄緑に */
   padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 軽い影の効果 */
-  transition: transform 0.3s ease;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.card:hover {
-  transform: translateY(-5px); /* マウスオーバー時の浮き上がりエフェクト */
+.dashboard-food-list ul {
+  list-style-type: none;
+  padding: 0;
 }
 
-.card h2 {
-  font-size: 20px;
-  color: #333333; /* カードのタイトルの色 */
+.dashboard-food-list li {
+  font-size: 16px;
+  color: #666666; /* リストアイテムのテキストの色 */
   margin-bottom: 10px;
 }
 
-.card p {
-  font-size: 14px;
-  color: #666666; /* カードのテキストの色 */
-  margin: 0;
+.dashboard-food-list input[type="checkbox"] {
+  margin-right: 10px;
 }
 
 .button {
   padding: 10px 20px;
-  background-color: #007bff; /* ボタンの背景色 */
+  background-color: #a8e6cf; /* ボタンの背景色を薄い黄緑に */
   color: #ffffff; /* ボタンのテキストの色 */
   text-decoration: none;
   border: none;
@@ -87,7 +70,7 @@ body {
 }
 
 .button:hover {
-  background-color: #0056b3; /* ホバーエフェクト */
+  background-color: #79d8a8; /* ホバーエフェクト */
 }
 
 .footer {
@@ -96,17 +79,12 @@ body {
   font-size: 14px;
   color: #666666; /* フッターのテキストの色 */
 }
-body {
-  font-family: 'Arial', sans-serif;
-  background-color: #f4f4f9;
-  margin: 0;
-  padding: 0;
-}
 
+/* Default styles */
 .container {
   max-width: 800px;
   margin: 50px auto;
-  background-color: #fff;
+  background-color: #f0ffe6; /* コンテンツの背景色を薄い黄緑に */
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -144,7 +122,7 @@ input[type="date"] {
 button[type="submit"] {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: #a8e6cf; /* ボタンの背景色を薄い黄緑に */
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -153,7 +131,7 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-  background-color: #0056b3;
+  background-color: #79d8a8; /* ホバーエフェクト */
 }
 
 .footer {
@@ -164,7 +142,7 @@ button[type="submit"]:hover {
 .button {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: #2bc98f; /* ボタンの背景色を薄い黄緑に */
   color: #fff;
   text-decoration: none;
   border-radius: 5px;
@@ -172,5 +150,5 @@ button[type="submit"]:hover {
 }
 
 .button:hover {
-  background-color: #0056b3;
+  background-color: #79d8a8; /* ホバーエフェクト */
 }
